@@ -9,41 +9,26 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap"
+    rel="stylesheet">
 </head>
 <body>
   <section class="container">
     <div class="marca">
       <img src="./img/taskfy.svg" alt="Logo da marca taskFy">
     </div>
-    <h2>Suas tarefas</h2>
+    <h1>Suas tarefas</h1>
     <div class="nova-tarefa">
-      <input type="text" name="add-tarefa" id="add-tarefa" placeholder="Adicionar nova tarefa">
+      <input type="text" name="tarefa-input" id="tarefa-input" class="tarefa-input" placeholder="Adicionar nova tarefa">
       <button class="btn">Adicionar</button>
     </div>
-    <ul>
+    <ul class="container-tarefas">
       <li class="tarefa-item">
         <div>
-          <input type="checkbox" name="tarefa" id="tarefa">
-          <label for="tarefa">Ir na lotérica</label>
-        </div>
-        <div class="lixeira">
-          <img src="./img/lixeira-icon.svg" alt="">
-        </div>
-      </li>
-      <li class="tarefa-item">
-        <div>
-          <input type="checkbox" name="tarefa" id="tarefa">
-          <label for="tarefa">Ir na padaria comprar pão carioquinha</label>
-        </div>
-        <div class="lixeira">
-          <img src="./img/lixeira-icon.svg" alt="">
-        </div>
-      </li>
-      <li class="tarefa-item">
-        <div>
-          <input type="checkbox" name="tarefa" id="tarefa">
-          <label for="tarefa">Ir na lotérica pagar a conta de luz da tataratataravó</label>
+          <input type="checkbox" name="tarefa-checkbox" id="tarefa-checkbox">
+          <label for="tarefa-checbox-1" class="visually-hidden">Concluir tarefa</label>
+          <p class="tarefa-descricao">Ir na lotérica pagar a fatura do cartão de crédito do irmão do neto do afilhado do meu tataratataravô</p>
         </div>
         <div class="lixeira">
           <img src="./img/lixeira-icon.svg" alt="">
