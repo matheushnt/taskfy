@@ -43,20 +43,24 @@ const adicionarTarefa = () => {
 };
 
 const deletarTarefa = (e) => {
-  if (e.target.closest('.lixeira')) {
-    const liElement = e.target.closest('li');
-    const descricaoTarefa = liElement.querySelector('div:first-child span').innerText;
+  const liElement = e.target.closest('li');
+  const descricaoTarefa = liElement.querySelector('div:first-child span').innerText;
 
-    if (tarefas.includes(descricaoTarefa)) {
-      liElement.remove();
+  if (tarefas.includes(descricaoTarefa)) {
+    liElement.remove();
 
-      tarefas = tarefas.filter((tarefa) => tarefa !== descricaoTarefa);
+    tarefas = tarefas.filter((tarefa) => tarefa !== descricaoTarefa);
 
-      if (tarefas.length === 0) {
-        textoInfo.classList.remove('hidden');
-        containerTarefas.classList.remove('ativo');
-      }
+    if (tarefas.length === 0) {
+      textoInfo.classList.remove('hidden');
+      containerTarefas.classList.remove('ativo');
     }
+  }
+};
+
+const handleClick = (e) => {
+  if (e.target.closest('.lixeira')) {
+    deletarTarefa(e);
   }
 };
 
@@ -65,4 +69,4 @@ formTarefa.addEventListener('submit', (e) => {
   adicionarTarefa();
 });
 
-containerTarefas.addEventListener('click', deletarTarefa);
+containerTarefas.addEventListener('click', handleClick);
