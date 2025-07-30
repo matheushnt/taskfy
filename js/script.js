@@ -1,4 +1,4 @@
-const botaoAdicionarTarefa = document.querySelector('.btn');
+const formTarefa = document.querySelector('.form-tarefa');
 const inputAdicionarTarefa = document.querySelector('.tarefa-input');
 const containerTarefas = document.querySelector('ul');
 const lixeiraIconeTarefas = document.querySelectorAll('.lixeira');
@@ -6,14 +6,15 @@ const textoInfo = document.querySelector('.texto-info');
 
 let tarefas = [];
 
-const criarLiElement = descricao => {
+const criarLiElement = (descricao) => {
   const newLiElement = document.createElement('li');
   newLiElement.classList.add('tarefa-item');
   newLiElement.innerHTML = `
     <div>
-      <input type="checkbox" name="tarefa-checkbox" id="tarefa-checkbox">
-      <label for="tarefa-checkbox" class="visually-hidden">Concluir tarefa</label>
-      <p class="tarefa-descricao">${descricao}</p>
+      <label for="tarefa-label">
+        <input type="checkbox" name="tarefa-checkbox">
+        <span class="tarefa-descricao">${descricao}</span>
+      </label>
     </div>
     <div class="lixeira">
       <img src="./img/lixeira-icon.svg" alt="">
@@ -34,21 +35,22 @@ const adicionarTarefa = () => {
 
     tarefas.push(descricaoTarefa);
     inputAdicionarTarefa.value = '';
+    inputAdicionarTarefa.focus();
   } else {
     alert('Você precisa informar uma tarefa válida');
     inputAdicionarTarefa.focus();
   }
 };
 
-const deletarTarefa = e => {
+const deletarTarefa = (e) => {
   if (e.target.closest('.lixeira')) {
     const liElement = e.target.closest('li');
-    const descricaoTarefa = liElement.querySelector('div:first-child p').innerText;
+    const descricaoTarefa = liElement.querySelector('div:first-child span').innerText;
 
     if (tarefas.includes(descricaoTarefa)) {
       liElement.remove();
 
-      tarefas = tarefas.filter(tarefa => tarefa !== descricaoTarefa);
+      tarefas = tarefas.filter((tarefa) => tarefa !== descricaoTarefa);
 
       if (tarefas.length === 0) {
         textoInfo.classList.remove('hidden');
@@ -58,6 +60,9 @@ const deletarTarefa = e => {
   }
 };
 
-botaoAdicionarTarefa.addEventListener('click', adicionarTarefa);
+formTarefa.addEventListener('submit', (e) => {
+  e.preventDefault();
+  adicionarTarefa();
+});
 
 containerTarefas.addEventListener('click', deletarTarefa);
