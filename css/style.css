@@ -109,7 +109,22 @@ img {
   background: #0A229B;
 }
 
+.container .texto-info {
+  text-align: center;
+  font: 800 1.125rem/1.5 "Quicksand", sans-serif;
+  color: var(--cor-9);
+}
+
+.container .texto-info.hidden {
+  display: none;
+}
+
 .container-tarefas {
+  display: none;
+}
+
+.container-tarefas.ativo {
+  display: block;
   max-height: 330px;
   overflow-y: auto;
   background: var(--cor-2);
@@ -118,18 +133,18 @@ img {
   padding: 0 14px;
 }
 
-.container-tarefas::-webkit-scrollbar {
+.container-tarefas.ativo::-webkit-scrollbar {
   width: 14px;
 }
 
-.container-tarefas::-webkit-scrollbar-thumb {
+.container-tarefas.ativo::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background-color: #0A229A;
   border-left: 4px solid white;
   border-right: 4px solid white;
 }
 
-.container-tarefas::-webkit-scrollbar-track {
+.container-tarefas.ativo::-webkit-scrollbar-track {
   background: white;
 }
 
@@ -142,7 +157,7 @@ img {
 }
 
 .tarefa-item + .tarefa-item {
-  border-top: 1px solid var(--cor-2);
+  border-top: 1px solid var(--cor-3);
 }
 
 .tarefa-item > div:first-child {
@@ -209,7 +224,7 @@ img {
     font-size: 0.875rem;
     line-height: 1.3;
   }
-  .container-tarefas {
+  .container-tarefas.ativo {
     max-height: 55vh;
   }
 }
