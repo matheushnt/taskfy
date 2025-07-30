@@ -4,7 +4,7 @@ const containerTarefas = document.querySelector('ul');
 const lixeiraIconeTarefas = document.querySelectorAll('.lixeira');
 const textoInfo = document.querySelector('.texto-info');
 
-const tarefas = [];
+let tarefas = [];
 
 const criarLiElement = descricao => {
   const newLiElement = document.createElement('li');
@@ -40,4 +40,24 @@ const adicionarTarefa = () => {
   }
 };
 
+const deletarTarefa = e => {
+  if (e.target.closest('.lixeira')) {
+    const liElement = e.target.closest('li');
+    const descricaoTarefa = liElement.querySelector('div:first-child p').innerText;
+
+    if (tarefas.includes(descricaoTarefa)) {
+      liElement.remove();
+
+      tarefas = tarefas.filter(tarefa => tarefa !== descricaoTarefa);
+
+      if (tarefas.length === 0) {
+        textoInfo.classList.remove('hidden');
+        containerTarefas.classList.remove('ativo');
+      }
+    }
+  }
+};
+
 botaoAdicionarTarefa.addEventListener('click', adicionarTarefa);
+
+containerTarefas.addEventListener('click', deletarTarefa);
