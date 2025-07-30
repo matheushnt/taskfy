@@ -1,0 +1,183 @@
+.container {
+  width: 100%;
+  background: var(--cor-1);
+  max-width: 800px;
+  padding: 30px 20px;
+  box-shadow: 0 48px 100px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border: 1px solid var(--cor-3);
+}
+
+
+.marca {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.container h1 {
+  font: 600 1.5rem/1.5 "Quicksand", sans-serif;
+  color:var(--cor-12);
+  margin-bottom: 20px;
+}
+
+.container .tarefa-input {
+  padding: 12px;
+  background: var(--cor-2);
+  border: 1px solid var(--cor-3);
+  border-radius: 5px;
+  font: 400 1rem/1.5 "Fira Sans", sans-serif;
+  width: 100%;
+}
+
+.container .tarefa-input:focus {
+  outline: none;
+  border-color: #0A229A;
+  box-shadow: 0 0 0 2px #2B63BC;
+  background: white;
+}
+
+.form-tarefa {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.btn {
+  background: linear-gradient(to top, #0A229A, #2B63BC);
+  border: none;
+  border-radius: 5px;
+  padding: 12px 24px;
+  color: white;
+  font: 800 0.875rem "Quicksand", sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #0A229B;
+}
+
+.container .texto-info {
+  text-align: center;
+  font: 800 1.125rem/1.5 "Quicksand", sans-serif;
+  color: var(--cor-9);
+}
+
+.container .texto-info.hidden {
+  display: none;
+}
+
+.container-tarefas {
+  display: none;
+}
+
+.container-tarefas.ativo {
+  display: block;
+  max-height: 330px;
+  overflow-y: auto;
+  background: var(--cor-2);
+  border: 1px solid var(--cor-3);
+  border-radius: 5px;
+  padding: 0 14px;
+}
+
+.container-tarefas.ativo::-webkit-scrollbar {
+  width: 14px;
+}
+
+.container-tarefas.ativo::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #0A229A;
+  border-left: 4px solid white;
+  border-right: 4px solid white;
+}
+
+.container-tarefas.ativo::-webkit-scrollbar-track {
+  background: white;
+}
+
+.tarefa-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  gap: 20px;
+}
+
+.tarefa-item + .tarefa-item {
+  border-top: 1px solid var(--cor-3);
+}
+
+.tarefa-item > div:first-child {
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.tarefa-item > div:first-child label {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.tarefa-item input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.tarefa-item input[type="checkbox"]:checked + .tarefa-descricao {
+  text-decoration: line-through;
+  color: var(--cor-8);
+}
+
+.tarefa-item .tarefa-descricao {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  font: 400 1rem/1.5 "Fira Sans", sans-serif;
+  color: var(--cor-11);
+  transition: transform 300ms ease-in-out;
+  min-width: 0;
+}
+
+.tarefa-item .tarefa-descricao:hover {
+  transform: scale(1.02);
+  color: var(--cor-13);
+}
+
+.tarefa-item .lixeira {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 300ms ease-in-out;
+}
+
+.tarefa-item .lixeira:hover {
+  transform: scale(1.20);
+}
+
+
+@media (max-width: 400px) {
+  body {
+    padding: 0;
+  }
+  .container {
+    height: 100vh;
+    border-radius: 0;
+    max-width: 100%;
+    box-shadow: none;
+  }
+  .tarefa-item .tarefa-descricao {
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+  .container-tarefas.ativo {
+    max-height: 55vh;
+  }
+}
