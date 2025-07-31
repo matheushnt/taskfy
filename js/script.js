@@ -58,9 +58,23 @@ const deletarTarefa = (e) => {
   }
 };
 
+const finalizarTarefa = (e) => {
+  const checkbox = e.target.closest('.tarefa-descricao').previousElementSibling;
+
+  if (!checkbox.checked) {
+    checkbox.checked = true;
+  } else {
+    checkbox.checked = false;
+  }
+};
+
 const handleClick = (e) => {
   if (e.target.closest('.lixeira')) {
     deletarTarefa(e);
+  }
+
+  if (e.target.closest('.tarefa-descricao')) {
+    finalizarTarefa(e);
   }
 };
 
