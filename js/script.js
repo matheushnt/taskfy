@@ -1,29 +1,13 @@
+import criarLiElement from './modules/create-li.js';
+
 const formTarefa = document.querySelector('.form-tarefa');
 const inputAdicionarTarefa = document.querySelector('.tarefa-input');
 const containerTarefas = document.querySelector('ul');
-const lixeiraIconeTarefas = document.querySelectorAll('.lixeira');
 const textoInfo = document.querySelector('.texto-info');
 const containerModal = document.querySelector('.container-modal');
 const btnFecharModal = document.querySelector('.fechar-modal');
 
 let tarefas = [];
-
-const criarLiElement = descricao => {
-  const newLiElement = document.createElement('li');
-  newLiElement.classList.add('tarefa-item');
-  newLiElement.innerHTML = `
-    <div>
-      <label for="tarefa-label">
-        <input type="checkbox" name="tarefa-checkbox">
-        <span class="tarefa-descricao">${descricao}</span>
-      </label>
-    </div>
-    <div class="lixeira">
-      <img src="./img/lixeira-icon.svg" alt="">
-    </div>
-    `;
-  return newLiElement;
-};
 
 const adicionarTarefa = () => {
   const descricaoTarefa = inputAdicionarTarefa.value.trim();
