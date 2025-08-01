@@ -1,4 +1,5 @@
 import criarLiElement from './modules/create-li.js';
+import isTruncada from './modules/is-truncada.js';
 
 const formTarefa = document.querySelector('.form-tarefa');
 const inputAdicionarTarefa = document.querySelector('.tarefa-input');
@@ -52,10 +53,6 @@ const finalizarTarefa = e => {
   } else {
     checkbox.checked = false;
   }
-};
-
-const isTruncada = element => {
-  return element.scrollWidth > element.clientWidth;
 };
 
 const toggleModal = () => {
