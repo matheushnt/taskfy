@@ -3,10 +3,12 @@ const inputAdicionarTarefa = document.querySelector('.tarefa-input');
 const containerTarefas = document.querySelector('ul');
 const lixeiraIconeTarefas = document.querySelectorAll('.lixeira');
 const textoInfo = document.querySelector('.texto-info');
+const containerModal = document.querySelector('.container-modal');
+const btnFecharModal = document.querySelector('.fechar-modal');
 
 let tarefas = [];
 
-const criarLiElement = (descricao) => {
+const criarLiElement = descricao => {
   const newLiElement = document.createElement('li');
   newLiElement.classList.add('tarefa-item');
   newLiElement.innerHTML = `
@@ -42,14 +44,14 @@ const adicionarTarefa = () => {
   }
 };
 
-const deletarTarefa = (e) => {
+const deletarTarefa = e => {
   const liElement = e.target.closest('li');
   const descricaoTarefa = liElement.querySelector('div:first-child span').innerText;
 
   if (tarefas.includes(descricaoTarefa)) {
     liElement.remove();
 
-    tarefas = tarefas.filter((tarefa) => tarefa !== descricaoTarefa);
+    tarefas = tarefas.filter(tarefa => tarefa !== descricaoTarefa);
 
     if (tarefas.length === 0) {
       textoInfo.classList.remove('hidden');
@@ -58,7 +60,7 @@ const deletarTarefa = (e) => {
   }
 };
 
-const finalizarTarefa = (e) => {
+const finalizarTarefa = e => {
   const checkbox = e.target.closest('.tarefa-descricao').previousElementSibling;
 
   if (!checkbox.checked) {
@@ -68,19 +70,43 @@ const finalizarTarefa = (e) => {
   }
 };
 
-const handleClick = (e) => {
-  if (e.target.closest('.lixeira')) {
-    deletarTarefa(e);
-  }
+const isTruncada = element => {
+  return element.scrollWidth > element.clientWidth;
+};
 
-  if (e.target.closest('.tarefa-descricao')) {
-    finalizarTarefa(e);
+const toggleModal = () => {
+  containerModal.classList.toggle('ativo');
+};
+
+const cliqueForaModal = event => {
+  if (event.target === containerModal) {
+    toggleModal();
   }
 };
 
-formTarefa.addEventListener('submit', (e) => {
+const handleClick = event => {
+  if (event.target.closest('.lixeira')) {
+    deletarTarefa(event);
+  }
+
+  if (event.target.closest('.tarefa-descricao') && !isTruncada(event.target.closest('.tarefa-descricao'))) {
+    finalizarTarefa(event);
+  }
+
+  if (event.target.closest('.tarefa-descricao') && isTruncada(event.target.closest('.tarefa-descricao'))) {
+    const descricaoCompleta = event.target.innerText;
+    const paragrafo = containerModal.querySelector('p');
+    paragrafo.innerText = descricaoCompleta;
+    toggleModal();
+  }
+};
+
+formTarefa.addEventListener('submit', e => {
   e.preventDefault();
   adicionarTarefa();
 });
 
 containerTarefas.addEventListener('click', handleClick);
+
+btnFecharModal.addEventListener('click', toggleModal);
+containerModal.addEventListener('click', cliqueForaModal);
