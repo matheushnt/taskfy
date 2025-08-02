@@ -29,8 +29,8 @@ const adicionarTarefa = () => {
   }
 };
 
-const deletarTarefa = e => {
-  const liElement = e.target.closest('li');
+const deletarTarefa = event => {
+  const liElement = event.target.closest('li');
   const descricaoTarefa = liElement.querySelector('div:first-child span').innerText;
 
   if (tarefas.includes(descricaoTarefa)) {
@@ -45,8 +45,8 @@ const deletarTarefa = e => {
   }
 };
 
-const finalizarTarefa = e => {
-  const checkbox = e.target.closest('.tarefa-descricao').previousElementSibling;
+const finalizarTarefa = event => {
+  const checkbox = event.target.closest('.tarefa-descricao').previousElementSibling;
 
   if (!checkbox.checked) {
     checkbox.checked = true;
@@ -66,15 +66,16 @@ const cliqueForaModal = event => {
 };
 
 const handleClick = event => {
-  if (event.target.closest('.lixeira')) {
+  const target = event.target;
+  if (target.closest('.lixeira')) {
     deletarTarefa(event);
   }
 
-  if (event.target.closest('.tarefa-descricao') && !isTruncada(event.target.closest('.tarefa-descricao'))) {
+  if (target.closest('.tarefa-descricao') && !isTruncada(target.closest('.tarefa-descricao'))) {
     finalizarTarefa(event);
   }
 
-  if (event.target.closest('.tarefa-descricao') && isTruncada(event.target.closest('.tarefa-descricao'))) {
+  if (target.closest('.tarefa-descricao') && isTruncada(target.closest('.tarefa-descricao'))) {
     const descricaoCompleta = event.target.innerText;
     const paragrafo = containerModal.querySelector('p');
     paragrafo.innerText = descricaoCompleta;
@@ -82,8 +83,8 @@ const handleClick = event => {
   }
 };
 
-formTarefa.addEventListener('submit', e => {
-  e.preventDefault();
+formTarefa.addEventListener('submit', event => {
+  event.preventDefault();
   adicionarTarefa();
 });
 
